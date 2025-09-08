@@ -134,7 +134,6 @@ const LoginPage = () => {
             style={{
               marginTop: "20px",
               padding: "12px",
-              // background: "linear-gradient(to right,  #00bcd4, #006f8e)",
               background: isHovered ? "#1976d2" : "rgb(33, 150, 243)",
               color: "white",
               fontSize: "15px",

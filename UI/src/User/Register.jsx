@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -146,10 +147,12 @@ const RegisterPage = () => {
           {/* Register Button */}
           <button
             onClick={handleRegister}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{
               marginTop: "20px",
               padding: "12px",
-              background: "linear-gradient(to right,  #00bcd4, #006f8e)",
+              background: isHovered ? "#1976d2" : "rgb(33, 150, 243)",
               color: "white",
               fontSize: "15px",
               fontWeight: 600,
@@ -186,6 +189,5 @@ const RegisterPage = () => {
     </div>
   );
 };
-
 
 export default RegisterPage;
