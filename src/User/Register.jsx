@@ -1,10 +1,9 @@
 import React from "react";
-import "../App.css";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -22,27 +21,27 @@ const LoginPage = () => {
         style={{
           background: "linear-gradient(to right, #006f8e, #00bcd4)",
           color: "white",
-          padding: "15px 20px",
+          padding: "15px 40px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           borderEndStartRadius: "50px",
           borderEndEndRadius: "50px",
-          minHeight: 80,
+          height: 80,
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          {/* <img src="" alt="logo" style={{ height: "40px" }} /> */}
+          <img src="" alt="" style={{ height: "40px" }} />
           <h2 style={{ margin: 0, fontSize: "18px", fontWeight: 600 }}>
             CRBIX SOLUTIONS
           </h2>
         </div>
-        <div style={{ fontSize: "40px", cursor: "pointer", color: "black" }}>
+        <div style={{ fontSize: "60px", cursor: "pointer", color: "black" }}>
           <PowerSettingsNewIcon />
         </div>
       </header>
 
-      {/* Login Card */}
+      {/* Register Card */}
       <div
         style={{
           margin: "auto",
@@ -54,43 +53,45 @@ const LoginPage = () => {
           overflow: "hidden",
           width: "90%",
           maxWidth: "1000px",
+          marginTop: "40px",
         }}
       >
         {/* Left Illustration */}
         <div
           style={{
-            flex: "1 1 300px", 
+            flex: 1,
+            minWidth: "250px",
             background: "rgb(207 207 207)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            minHeight: "250px",
           }}
         >
           <img
             src="/illustration.png"
             alt="Employee working"
-            style={{ width: "90%", height: "auto", maxWidth: "350px" }}
+            style={{ width: "100%", maxWidth: "300px", height: "auto" }}
           />
         </div>
 
-        {/* Right Login Form */}
+        {/* Right Register Form */}
         <div
           style={{
-            flex: "1 1 300px", 
+            flex: 1,
+            minWidth: "280px",
             background: "rgb(207 207 207)",
-            padding: "30px 20px",
+            padding: "30px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          {/* Logo Circle */}
+          {/* Avatar Circle */}
           <div
             style={{
-              width: "80px",
-              height: "80px",
-              background: "linear-gradient(to right,  #00bcd4, #006f8e)",
+              width: "90px",
+              height: "90px",
+              background: "linear-gradient(to right, #00bcd4, #006f8e)",
               borderRadius: "50%",
               marginBottom: "25px",
               border: "1px solid #0e0e0eff",
@@ -98,42 +99,52 @@ const LoginPage = () => {
           ></div>
 
           {/* Inputs */}
-          <input type="text" placeholder="Enter Username" style={inputStyle} />
-          <input
-            type="password"
-            placeholder="Enter Password"
-            style={inputStyle}
-          />
-
-          {/* Login Button */}
-          <button style={loginButtonStyle}>Login</button>
-
-          {/* Register Section */}
-          <div
-            style={{
-              marginTop: "20px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-            }}
-          >
-            <p style={{ fontSize: "14px", marginBottom: "8px" }}>
-              If you don't have an account?
-            </p>
-            <Button
-              onClick={() => navigate("/register")}
+          {[
+            "Enter First Name",
+            "Enter Last Name",
+            "Password",
+            "Phone No",
+          ].map((placeholder, index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={placeholder}
               style={{
-                padding: "10px 20px",
+                width: "100%",
+                maxWidth: "350px",
+                margin: "8px 0",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #0e0e0eff",
+                fontSize: "14px",
+                background: "linear-gradient(to right, #00bcd4, #006f8e)",
+                color: "white",
+                fontWeight: 600,
+              }}
+            />
+          ))}
+
+          {/* Register Button */}
+          <button style={RegisterButtonStyle}>
+            Register
+          </button>
+
+          {/* Link to Login */}
+          <div style={{ marginTop: "20px", textAlign: "center" }}>
+            <p style={{ fontSize: "14px" }}>If you already have an account?</p>
+            <Button
+              onClick={() => navigate("/")}
+              style={{
+                marginTop: "5px",
+                padding: "6px 40px",
                 background: "rgb(207 207 207)",
                 color: "#006f8e",
-                fontSize: "13px",
+                fontSize: "12px",
                 fontWeight: 600,
                 borderRadius: "8px",
-                cursor: "pointer",
               }}
             >
-              Register
+              Login
             </Button>
           </div>
         </div>
@@ -142,19 +153,7 @@ const LoginPage = () => {
   );
 };
 
-const inputStyle = {
-  color: "white",
-  fontWeight: 600,
-  background: "linear-gradient(to right, #00bcd4, #006f8e)",
-  width: "100%",
-  margin: "8px 0",
-  padding: "12px",
-  borderRadius: "8px",
-  border: "1px solid #141414ff",
-  fontSize: "14px",
-};
-
-const loginButtonStyle = {
+const RegisterButtonStyle = {
   marginTop: "20px",
   padding: "12px",
   background: "linear-gradient(to right,  #00bcd4, #006f8e)",
@@ -165,7 +164,7 @@ const loginButtonStyle = {
   borderRadius: "8px",
   cursor: "pointer",
   transition: "0.3s ease",
-  width: "100%",
+  width: "75%",
 };
 
-export default LoginPage;
+export default RegisterPage;

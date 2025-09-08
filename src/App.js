@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import LoginPage from './User/Login';
+import RegisterPage from './User/Register';
+// import Dashboard from './User/Dashboard';
+import { Routes, Route } from "react-router-dom";
+import TaskTime from './User/TaskTime';
+import { User } from './Routes/User';
+import { Admin } from './Routes/Admin';
+import AdminDashboard from './Admin/AdminDashbord';
+import AdminTaskTime from './Admin/AdminTaskTime';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+       <Route path="/*" element={<User/>} />
+       <Route path="/admin/*" element={<Admin/>}></Route> 
+    </Routes>
+    // <AdminDashboard/>
+    // <AdminTaskTime/>
   );
 }
 
