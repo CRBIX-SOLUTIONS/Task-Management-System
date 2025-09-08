@@ -73,7 +73,7 @@ const AdminDashboard = () => {
               background: "#018ea3",
               padding: "15px",
               borderRadius: "12px",
-              marginBottom: "20px",
+              marginBottom: "25px",
               color: "white",
               textAlign: "center",
             }}
@@ -85,18 +85,30 @@ const AdminDashboard = () => {
               background: "#018ea3",
               padding: "15px",
               borderRadius: "12px",
+              marginBottom: "25px",
               color: "white",
               textAlign: "center",
             }}
           >
             No of tasks Assigned
           </div>
+          <div
+            style={{
+              background: "#018ea3",
+              padding: "15px",
+              borderRadius: "12px",
+              color: "white",
+              textAlign: "center",
+            }}
+          >
+            <p>No of Hrs Logged In</p>
+          </div>
         </div>
 
         {/* Right Side */}
         <div
           style={{
-            flex: "3 1 600px", 
+            flex: "3 1 600px",
             background: "rgb(207 207 207)",
             borderRadius: "12px",
             boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -135,24 +147,54 @@ const AdminDashboard = () => {
               flex: 1,
             }}
           >
-            <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
-              <p>Task 1</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
-              <p> Task 2</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
-              <p> Task 3</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
-              <p>Task 4</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
-              <p> Task 5</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
-              <p>Task 6</p>
-            </div>
+            <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              textAlign: "center",
+              
+            }}
+          >
+            <thead>
+              <tr style={{ background: "#e0f7fa" }}>
+                <th style={thStyle}>Emp Name</th>
+                <th style={thStyle}>Task Assigned</th>
+                <th style={thStyle}>Task Status</th>
+                <th style={thStyle}>Emp Work Hrs</th>
+                <th style={thStyle}>No of Tasks Left</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={tdStyle}>Name</td>
+                <td style={tdStyle}>Task Summary</td>
+                <td style={tdStyle}>
+                  <select style={{ padding: "5px", borderRadius: "6px" }}>
+                    <option>-- Select --</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                  </select>
+                </td>
+                <td style={tdStyle}>
+                  In: <br />
+                  Out: <br />
+                  Hrs:
+                </td>
+                <td style={tdStyle}>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    style={{
+                      padding: "5px",
+                      width: "60px",
+                      borderRadius: "6px",
+                      border: "1px solid #ccc",
+                    }}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
           </div>
         </div>
       </div>
@@ -176,6 +218,18 @@ const cardBoxStyle = {
   color: "white",
   padding: "15px",
   minHeight: "200px",
+};
+
+const tdStyle = {
+  padding: "10px",
+  border: "1px solid #0a0a0aff",
+  // borderRadius:"10px",
+};
+const thStyle = {
+  // borderRadius:"10px",
+  padding: "12px",
+  border: "1px solid #0c0c0cff",
+  fontWeight: "bold",
 };
 
 export default AdminDashboard;

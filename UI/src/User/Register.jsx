@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [contact, setcontact] = useState("");
+
+  const handleRegister = () => {
+    if (!firstName || !lastName || !password || !contact) {
+      alert(" Please fill all fields before Register.");
+      return;
+    }
+    const strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!strongPasswordRegex.test(password)) {
+      alert(
+        "Password must be at least 8 characters, include uppercase, lowercase, number, and special character."
+      );
+      return;
+    }
+    alert("Register Successful ");
+    navigate("/");
+  };
 
   return (
     <div
@@ -46,7 +68,7 @@ const RegisterPage = () => {
         style={{
           margin: "auto",
           display: "flex",
-          flexWrap: "wrap", 
+          flexWrap: "wrap",
           background: "#fff",
           borderRadius: "12px",
           boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -99,33 +121,45 @@ const RegisterPage = () => {
           ></div>
 
           {/* Inputs */}
-          {[
-            "Enter First Name",
-            "Enter Last Name",
-            "Password",
-            "Phone No",
-          ].map((placeholder, index) => (
-            <input
-              key={index}
-              type="text"
-              placeholder={placeholder}
-              style={{
-                width: "100%",
-                maxWidth: "350px",
-                margin: "8px 0",
-                padding: "12px",
-                borderRadius: "8px",
-                border: "1px solid #0e0e0eff",
-                fontSize: "14px",
-                background: "linear-gradient(to right, #00bcd4, #006f8e)",
-                color: "white",
-                fontWeight: 600,
-              }}
-            />
-          ))}
+          {["Enter First Name", "Enter Last Name", "Password", "Phone No"].map(
+            (placeholder, index) => (
+              <input
+                key={index}
+                type="text"
+                placeholder={placeholder}
+                style={{
+                  width: "100%",
+                  maxWidth: "350px",
+                  margin: "8px 0",
+                  padding: "12px",
+                  borderRadius: "8px",
+                  border: "1px solid #0e0e0eff",
+                  fontSize: "14px",
+                  background: "linear-gradient(to right, #00bcd4, #006f8e)",
+                  color: "white",
+                  fontWeight: 600,
+                }}
+              />
+            )
+          )}
 
           {/* Register Button */}
-          <button style={RegisterButtonStyle}>
+          <button
+            onClick={handleRegister}
+            style={{
+              marginTop: "20px",
+              padding: "12px",
+              background: "linear-gradient(to right,  #00bcd4, #006f8e)",
+              color: "white",
+              fontSize: "15px",
+              fontWeight: 600,
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "0.3s ease",
+              width: "75%",
+            }}
+          >
             Register
           </button>
 
@@ -153,18 +187,5 @@ const RegisterPage = () => {
   );
 };
 
-const RegisterButtonStyle = {
-  marginTop: "20px",
-  padding: "12px",
-  background: "linear-gradient(to right,  #00bcd4, #006f8e)",
-  color: "white",
-  fontSize: "15px",
-  fontWeight: 600,
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer",
-  transition: "0.3s ease",
-  width: "75%",
-};
 
 export default RegisterPage;

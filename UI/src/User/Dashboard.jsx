@@ -96,7 +96,7 @@ const Dashboard = () => {
         {/* Right Side */}
         <div
           style={{
-            flex: "3 1 600px", 
+            flex: "3 1 600px",
             background: "rgb(207 207 207)",
             borderRadius: "12px",
             boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -135,24 +135,24 @@ const Dashboard = () => {
               flex: 1,
             }}
           >
-            <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
+            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
               <p>Task 1</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
+            </button>
+            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
               <p> Task 2</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
+            </button>
+            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
               <p> Task 3</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
+            </button>
+            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
               <p>Task 4</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
+            </button>
+            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
               <p> Task 5</p>
-            </div>
-             <div style={{ ...cardBoxStyle, flex: "3 2 200px" }}>
+            </button>
+            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
               <p>Task 6</p>
-            </div>
+            </button>
           </div>
         </div>
       </div>

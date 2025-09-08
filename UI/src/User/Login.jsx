@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import Button from "@mui/material/Button";
@@ -6,6 +6,27 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (!username || !password) {
+      alert(" Please fill all fields before login.");
+      return;
+    }
+    const strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!strongPasswordRegex.test(password)) {
+      alert(
+        "Password must be at least 8 characters, include uppercase, lowercase, number, and special character."
+      );
+      return;
+    }
+    alert("Login Successful ");
+    navigate("/dashboard");
+  };
 
   return (
     <div
@@ -47,7 +68,7 @@ const LoginPage = () => {
         style={{
           margin: "auto",
           display: "flex",
-          flexWrap: "wrap", 
+          flexWrap: "wrap",
           background: "#fff",
           borderRadius: "12px",
           boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -59,7 +80,7 @@ const LoginPage = () => {
         {/* Left Illustration */}
         <div
           style={{
-            flex: "1 1 300px", 
+            flex: "1 1 300px",
             background: "rgb(207 207 207)",
             display: "flex",
             alignItems: "center",
@@ -77,7 +98,7 @@ const LoginPage = () => {
         {/* Right Login Form */}
         <div
           style={{
-            flex: "1 1 300px", 
+            flex: "1 1 300px",
             background: "rgb(207 207 207)",
             padding: "30px 20px",
             display: "flex",
@@ -106,7 +127,27 @@ const LoginPage = () => {
           />
 
           {/* Login Button */}
-          <button style={loginButtonStyle}>Login</button>
+          <button
+            onClick={handleLogin}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{
+              marginTop: "20px",
+              padding: "12px",
+              // background: "linear-gradient(to right,  #00bcd4, #006f8e)",
+              background: isHovered ? "#1976d2" : "rgb(33, 150, 243)",
+              color: "white",
+              fontSize: "15px",
+              fontWeight: 600,
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "0.3s ease",
+              width: "100%",
+            }}
+          >
+            Login
+          </button>
 
           {/* Register Section */}
           <div
@@ -154,18 +195,5 @@ const inputStyle = {
   fontSize: "14px",
 };
 
-const loginButtonStyle = {
-  marginTop: "20px",
-  padding: "12px",
-  background: "linear-gradient(to right,  #00bcd4, #006f8e)",
-  color: "white",
-  fontSize: "15px",
-  fontWeight: 600,
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer",
-  transition: "0.3s ease",
-  width: "100%",
-};
 
 export default LoginPage;

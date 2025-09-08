@@ -5,7 +5,6 @@ import RegisterPage from "../User/Register";
 import { Route, Routes } from "react-router-dom";
 import TaskTime from "../User/TaskTime";
 
-
 export const User = () => {
   return (
     <div>

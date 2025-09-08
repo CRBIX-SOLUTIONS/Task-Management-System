@@ -39,79 +39,65 @@ const AdminDashboard = () => {
       {/* Content */}
       <div
         style={{
-          margin: "auto",
           display: "flex",
+          flexDirection: "row",
           flexWrap: "wrap",
-          gap: "30px",
-          width: "90%",
-          maxWidth: "1200px",
-          marginTop: "40px",
+          gap: "20px",
+          padding: "20px",
         }}
       >
         {/* Left Panel */}
         <div
           style={{
-            flex: "0.3",
-            minWidth: "250px",
+            flex: "1 1 250px",
             background: "rgb(207 207 207)",
             borderRadius: "16px",
+            boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
             padding: "20px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-            alignItems: "center",
+            minHeight: "300px",
           }}
         >
           <div
             style={{
-              width: "80px",
-              height: "80px",
-              background: "linear-gradient(to right,  #00bcd4, #006f8e",
+              margin: "auto",
+              width: "90px",
+              height: "90px",
+              background: "linear-gradient(to right, #006f8e, #00bcd4)",
               borderRadius: "50%",
+              marginBottom: "25px",
             }}
           ></div>
-
           <div
             style={{
-              background: "#4bb9c9",
-              color: "black",
+              background: "#018ea3",
               padding: "15px",
-              borderRadius: "10px",
+              borderRadius: "12px",
+              marginBottom: "25px",
+              color: "white",
               textAlign: "center",
-              fontWeight: 600,
-              width: "100%",
             }}
           >
             In Time: <br /> Out Time:
           </div>
-
           <div
             style={{
-              background: "#4bb9c9",
-              color: "black",
+              background: "#018ea3",
               padding: "15px",
-              borderRadius: "10px",
+              borderRadius: "12px",
+              marginBottom: "25px",
+              color: "white",
               textAlign: "center",
-              fontWeight: 600,
-              width: "100%",
-              height:"50px",
-              textAlignLast:"center"
             }}
           >
-            <p>No of Tasks Assigned</p>
+            No of tasks Assigned
           </div>
-
           <div
             style={{
-              background: "#4bb9c9",
-              color: "black",
+              background: "#018ea3",
               padding: "15px",
-              borderRadius: "10px",
+              borderRadius: "12px",
+              color: "white",
               textAlign: "center",
-              fontWeight: 600,
-              width: "100%",
-              height:"50px",
-              textAlignLast:"center"
             }}
           >
             <p>No of Hrs Logged In</p>
@@ -121,14 +107,14 @@ const AdminDashboard = () => {
         {/* Right Panel */}
         <div
           style={{
-            flex: "0.7",
-            minWidth: "280px",
+            flex: "3 1 600px",
             background: "rgb(207 207 207)",
-            borderRadius: "16px",
+            borderRadius: "12px",
+            boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
             padding: "20px",
             display: "flex",
             flexDirection: "column",
-            gap: "20px",
+            minHeight: "300px",
           }}
         >
           {/* Dropdowns */}
@@ -171,7 +157,10 @@ const AdminDashboard = () => {
                 color: "black",
               }}
             >
-              <p>Name of Employees whose <br/>Tasks Are Due</p>
+              <p>
+                Name of Employees whose <br />
+                Tasks Are Due
+              </p>
               <select
                 style={{
                   marginTop: "15px",
@@ -197,7 +186,10 @@ const AdminDashboard = () => {
                 color: "black",
               }}
             >
-              <p>Name of Employees Who <br/>Escalated the Tasks</p>
+              <p>
+                Name of Employees Who <br />
+                Escalated the Tasks
+              </p>
               <select
                 style={{
                   marginTop: "15px",
