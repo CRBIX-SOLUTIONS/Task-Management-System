@@ -1,7 +1,17 @@
 import React from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import { useNavigate } from "react-router-dom";
 
 const TaskTime = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem("userId");
+      navigate("/");
+    }
+  };
   return (
     <div
       style={{
@@ -32,8 +42,21 @@ const TaskTime = () => {
             CRBIX SOLUTIONS
           </h2>
         </div>
-        <div style={{ fontSize: "40px", cursor: "pointer", color: "black" }}>
+        <div
+          onClick={handleLogout}
+          style={{ fontSize: "40px", cursor: "pointer", color: "black" }}
+        >
           <PowerSettingsNewIcon />
+          <p
+            style={{
+              fontWeight: "800",
+              fontSize: "13px",
+              margin: "-10px -7px -10px",
+              color: "black",
+            }}
+          >
+            LogOut
+          </p>
         </div>
       </header>
 
@@ -50,7 +73,7 @@ const TaskTime = () => {
         {/* Left Side */}
         <div
           style={{
-            flex: "1 1 250px", 
+            flex: "1 1 250px",
             background: "rgb(207 207 207)",
             borderRadius: "16px",
             boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -96,7 +119,7 @@ const TaskTime = () => {
         {/* Right Side */}
         <div
           style={{
-            flex: "3 1 600px", 
+            flex: "3 1 600px",
             background: "rgb(207 207 207)",
             borderRadius: "12px",
             boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -147,7 +170,6 @@ const TaskTime = () => {
     </div>
   );
 };
-
 
 const dropdownStyle = {
   padding: "10px",

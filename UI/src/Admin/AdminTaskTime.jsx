@@ -1,7 +1,16 @@
 import React from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem("userId");
+      navigate("/");
+    }
+  };
   return (
     <div
       style={{
@@ -31,8 +40,21 @@ const AdminDashboard = () => {
             CRBIX SOLUTIONS
           </h2>
         </div>
-        <div style={{ fontSize: "50px", cursor: "pointer", color: "black" }}>
+        <div
+          onClick={handleLogout}
+          style={{ fontSize: "50px", cursor: "pointer", color: "black" }}
+        >
           <PowerSettingsNewIcon />
+          <p
+            style={{
+              fontWeight: "800",
+              fontSize: "13px",
+              margin: "-10px -7px -10px",
+              color: "black",
+            }}
+          >
+            LogOut
+          </p>
         </div>
       </header>
 

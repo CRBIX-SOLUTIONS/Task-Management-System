@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem("userId");
+      navigate("/");
+    }
+  };
   return (
     <div
       style={{
@@ -32,8 +42,21 @@ const Dashboard = () => {
             CRBIX SOLUTIONS
           </h2>
         </div>
-        <div style={{ fontSize: "40px", cursor: "pointer", color: "black" }}>
+        <div
+          onClick={handleLogout}
+          style={{ fontSize: "40px", cursor: "pointer", color: "black" }}
+        >
           <PowerSettingsNewIcon />
+          <p
+            style={{
+              fontWeight: "800",
+              fontSize: "13px",
+              margin: "-10px -7px -10px",
+              color: "black",
+            }}
+          >
+            LogOut
+          </p>
         </div>
       </header>
 
@@ -135,9 +158,69 @@ const Dashboard = () => {
               flex: 1,
             }}
           >
-            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
+            <button
+              onClick={() => setIsOpen(true)}
+              style={{ ...cardBoxStyle, flex: "3 2 210px" }}
+            >
               <p>Task 1</p>
             </button>
+            {isOpen && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: "rgba(0,0,0,0.5)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    background: "rgb(207 207 207)",
+                    padding: "20px",
+                    borderRadius: "10px",
+                    minWidth: "300px",
+                    textAlign: "center",
+                  }}
+                >
+                  <h2>Task Detail's</h2>
+                  <p style={{ marginLeft: "5px" }}>
+                    <strong>Task Name:</strong> Sample Task
+                  </p>
+                  <p style={{ marginLeft: "-79px" }}>
+                    <strong>Priority:</strong> High
+                  </p>
+                  <p style={{ marginLeft: "-4px" }}>
+                    <strong>Assignee Name:</strong> Omkar
+                  </p>
+                  <p style={{ marginLeft: "-9px" }}>
+                    <strong>Assigned By:</strong> Manager
+                  </p>
+                  <p style={{ marginLeft: "-55px" }}>
+                    <strong>Date:</strong> 09/09/2025
+                  </p>
+
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    style={{
+                      marginTop: "10px",
+                      padding: "8px 16px",
+                      background: "linear-gradient(to right, #006f8e, #00bcd4)",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
             <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
               <p> Task 2</p>
             </button>

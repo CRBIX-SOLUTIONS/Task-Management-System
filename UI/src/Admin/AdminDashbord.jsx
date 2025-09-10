@@ -1,7 +1,16 @@
 import React from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem("userId");
+      navigate("/");
+    }
+  };
   return (
     <div
       style={{
@@ -32,8 +41,21 @@ const AdminDashboard = () => {
             CRBIX SOLUTIONS
           </h2>
         </div>
-        <div style={{ fontSize: "40px", cursor: "pointer", color: "black" }}>
+        <div
+          onClick={handleLogout}
+          style={{ fontSize: "40px", cursor: "pointer", color: "black" }}
+        >
           <PowerSettingsNewIcon />
+          <p
+            style={{
+              fontWeight: "800",
+              fontSize: "13px",
+              margin: "-10px -7px -10px",
+              color: "black",
+            }}
+          >
+            LogOut
+          </p>
         </div>
       </header>
 
@@ -148,53 +170,52 @@ const AdminDashboard = () => {
             }}
           >
             <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              textAlign: "center",
-              
-            }}
-          >
-            <thead>
-              <tr style={{ background: "#e0f7fa" }}>
-                <th style={thStyle}>Emp Name</th>
-                <th style={thStyle}>Task Assigned</th>
-                <th style={thStyle}>Task Status</th>
-                <th style={thStyle}>Emp Work Hrs</th>
-                <th style={thStyle}>No of Tasks Left</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={tdStyle}>Name</td>
-                <td style={tdStyle}>Task Summary</td>
-                <td style={tdStyle}>
-                  <select style={{ padding: "5px", borderRadius: "6px" }}>
-                    <option>-- Select --</option>
-                    <option>In Progress</option>
-                    <option>Completed</option>
-                  </select>
-                </td>
-                <td style={tdStyle}>
-                  In: <br />
-                  Out: <br />
-                  Hrs:
-                </td>
-                <td style={tdStyle}>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    style={{
-                      padding: "5px",
-                      width: "60px",
-                      borderRadius: "6px",
-                      border: "1px solid #ccc",
-                    }}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                textAlign: "center",
+              }}
+            >
+              <thead>
+                <tr style={{ background: "#e0f7fa" }}>
+                  <th style={thStyle}>Emp Name</th>
+                  <th style={thStyle}>Task Assigned</th>
+                  <th style={thStyle}>Task Status</th>
+                  <th style={thStyle}>Emp Work Hrs</th>
+                  <th style={thStyle}>No of Tasks Left</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={tdStyle}>Name</td>
+                  <td style={tdStyle}>Task Summary</td>
+                  <td style={tdStyle}>
+                    <select style={{ padding: "5px", borderRadius: "6px" }}>
+                      <option>-- Select --</option>
+                      <option>In Progress</option>
+                      <option>Completed</option>
+                    </select>
+                  </td>
+                  <td style={tdStyle}>
+                    In: <br />
+                    Out: <br />
+                    Hrs:
+                  </td>
+                  <td style={tdStyle}>
+                    <input
+                      type="number"
+                      placeholder="0"
+                      style={{
+                        padding: "5px",
+                        width: "60px",
+                        borderRadius: "6px",
+                        border: "1px solid #ccc",
+                      }}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

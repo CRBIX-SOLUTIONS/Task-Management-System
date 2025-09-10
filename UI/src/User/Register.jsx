@@ -35,7 +35,9 @@ const RegisterPage = () => {
       alert("Please upload all documents before Register.");
       return;
     }
-    alert("PLEASE MAKE SURE YOU HAVE MET THE REQUIREMENTS AND FOLLOW THE GIVEN NOTE, ONCE SUBMITTED, YOU WILL NOT BE ABLE TO CHANGE THE DATA")
+    alert(
+      "PLEASE MAKE SURE YOU HAVE MET THE REQUIREMENTS AND FOLLOW THE GIVEN NOTE, ONCE SUBMITTED, YOU WILL NOT BE ABLE TO CHANGE THE DATA"
+    );
     alert("Register Successful ");
     navigate("/");
   };

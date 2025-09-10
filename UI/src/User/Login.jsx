@@ -3,6 +3,7 @@ import "../App.css";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -10,22 +11,30 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!username || !password) {
       alert(" Please fill all fields before login.");
       return;
     }
-    const strongPasswordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-    if (!strongPasswordRegex.test(password)) {
-      alert(
-        "Password must be at least 8 characters, include uppercase, lowercase, number, and special character."
-      );
-      return;
+    try {
+      const res = await axios.post("http://localhost:5000/api/users/login", {
+        username,
+        password,
+      });
+
+      const data = res.data;
+      if (data.role === "admin") {
+        alert("Admin Login Successful!");
+        navigate("/admin");
+      } else {
+        localStorage.setItem("userId", data.userId);
+        alert("Login Successful!");
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      alert("Login failed: " + (err.response?.data?.error || "Login Fail"));
     }
-    alert("Login Successful ");
-    navigate("/dashboard");
   };
 
   return (
@@ -119,10 +128,18 @@ const LoginPage = () => {
           ></div>
 
           {/* Inputs */}
-          <input type="text" placeholder="Enter Username" style={inputStyle} />
+          <input
+            type="text"
+            placeholder="Enter Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={inputStyle}
+          />
           <input
             type="password"
             placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             style={inputStyle}
           />
 
@@ -193,6 +210,5 @@ const inputStyle = {
   border: "1px solid #141414ff",
   fontSize: "14px",
 };
-
 
 export default LoginPage;
