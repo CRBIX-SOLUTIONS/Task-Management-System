@@ -11,11 +11,17 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [contact, setcontact] = useState("");
 
+  const [aadharFile, setAadharFile] = useState(null);
+  const [panFile, setPanFile] = useState(null);
+  const [marksheetFile, setMarksheetFile] = useState(null);
+  const [confirmed, setConfirmed] = useState(false);
+
   const handleRegister = () => {
     if (!firstName || !lastName || !password || !contact) {
       alert(" Please fill all fields before Register.");
       return;
     }
+
     const strongPasswordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -25,6 +31,11 @@ const RegisterPage = () => {
       );
       return;
     }
+    if (!aadharFile || !panFile || !marksheetFile) {
+      alert("Please upload all documents before Register.");
+      return;
+    }
+    alert("PLEASE MAKE SURE YOU HAVE MET THE REQUIREMENTS AND FOLLOW THE GIVEN NOTE, ONCE SUBMITTED, YOU WILL NOT BE ABLE TO CHANGE THE DATA")
     alert("Register Successful ");
     navigate("/");
   };
@@ -122,28 +133,191 @@ const RegisterPage = () => {
           ></div>
 
           {/* Inputs */}
-          {["Enter First Name", "Enter Last Name", "Password", "Phone No"].map(
-            (placeholder, index) => (
+          <input
+            type="text"
+            placeholder="Enter First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            style={{
+              width: "100%",
+              maxWidth: "350px",
+              margin: "8px 0",
+              padding: "12px",
+              borderRadius: "8px",
+              border: "1px solid #0e0e0eff",
+              fontSize: "14px",
+              background: "linear-gradient(to right, #00bcd4, #006f8e)",
+              color: "white",
+              fontWeight: 600,
+            }}
+          />
+
+          <input
+            type="text"
+            placeholder="Enter Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            style={{
+              width: "100%",
+              maxWidth: "350px",
+              margin: "8px 0",
+              padding: "12px",
+              borderRadius: "8px",
+              border: "1px solid #0e0e0eff",
+              fontSize: "14px",
+              background: "linear-gradient(to right, #00bcd4, #006f8e)",
+              color: "white",
+              fontWeight: 600,
+            }}
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{
+              width: "100%",
+              maxWidth: "350px",
+              margin: "8px 0",
+              padding: "12px",
+              borderRadius: "8px",
+              border: "1px solid #0e0e0eff",
+              fontSize: "14px",
+              background: "linear-gradient(to right, #00bcd4, #006f8e)",
+              color: "white",
+              fontWeight: 600,
+            }}
+          />
+
+          <input
+            type="text"
+            placeholder="Phone No"
+            value={contact}
+            onChange={(e) => setcontact(e.target.value)}
+            style={{
+              width: "100%",
+              maxWidth: "350px",
+              margin: "8px 0",
+              padding: "12px",
+              borderRadius: "8px",
+              border: "1px solid #0e0e0eff",
+              fontSize: "14px",
+              background: "linear-gradient(to right, #00bcd4, #006f8e)",
+              color: "white",
+              fontWeight: 600,
+            }}
+          />
+
+          {/* Upload Section */}
+          <div style={{ marginTop: "20px", width: "100%", maxWidth: "350px" }}>
+            <label style={{ fontWeight: 600 }}>Upload Documents:</label>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: "15px",
+                width: "100%",
+                maxWidth: "350px",
+                margin: "8px 0",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #0e0e0eff",
+                fontSize: "14px",
+                background: "linear-gradient(to right, #00bcd4, #006f8e)",
+                color: "white",
+                fontWeight: 600,
+                marginLeft: "-11px",
+              }}
+            >
+              <label style={{ fontWeight: 600 }}>Aadhar Card:</label>
               <input
-                key={index}
-                type="text"
-                placeholder={placeholder}
+                type="file"
+                accept=".jpg,.jpeg,.png,.pdf"
+                onChange={(e) => setAadharFile(e.target.files[0])}
+                style={{ flex: 1, marginLeft: "8px", minWidth: "200px" }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: "15px",
+                width: "100%",
+                maxWidth: "350px",
+                margin: "8px 0",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #0e0e0eff",
+                fontSize: "14px",
+                background: "linear-gradient(to right, #00bcd4, #006f8e)",
+                color: "white",
+                fontWeight: 600,
+                marginLeft: "-11px",
+              }}
+            >
+              <label style={{ fontWeight: 600 }}>PAN Card:</label>
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.pdf"
+                onChange={(e) => setPanFile(e.target.files[0])}
                 style={{
-                  width: "100%",
-                  maxWidth: "350px",
-                  margin: "8px 0",
-                  padding: "12px",
-                  borderRadius: "8px",
-                  border: "1px solid #0e0e0eff",
-                  fontSize: "14px",
-                  background: "linear-gradient(to right, #00bcd4, #006f8e)",
-                  color: "white",
-                  fontWeight: 600,
+                  flex: 1,
+                  marginLeft: "28px",
+                  minWidth: "200px",
                 }}
               />
-            )
-          )}
+            </div>
 
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "15px",
+                width: "100%",
+                maxWidth: "350px",
+                margin: "8px 0",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #0e0e0eff",
+                fontSize: "14px",
+                background: "linear-gradient(to right, #00bcd4, #006f8e)",
+                color: "white",
+                fontWeight: 600,
+                marginLeft: "-11px",
+              }}
+            >
+              <label style={{ fontWeight: 600 }}>
+                10th,12th,Graduation Marksheet's:
+              </label>
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.pdf"
+                onChange={(e) => setMarksheetFile(e.target.files[0])}
+                style={{
+                  flex: 1,
+                  marginLeft: "20px",
+                  minWidth: "200px",
+                }}
+              />
+            </div>
+            <p
+              style={{
+                background: "#fff3cd",
+                color: "#856404",
+                padding: "8px 10px",
+                borderRadius: "6px",
+                fontSize: "12px",
+                border: "1px solid #ffeeba",
+                marginTop: "6px",
+              }}
+            >
+              PLEASE COMPILE YOUR 10th, 12th and GRADUATION MARKSHEET INTO
+              SINGLE PDF
+            </p>
+          </div>
           {/* Register Button */}
           <button
             onClick={handleRegister}
@@ -188,6 +362,19 @@ const RegisterPage = () => {
       </div>
     </div>
   );
+};
+
+const inputstyle = {
+  width: "100%",
+  maxWidth: "350px",
+  margin: "8px 0",
+  padding: "12px",
+  borderRadius: "8px",
+  border: "1px solid #0e0e0eff",
+  fontSize: "14px",
+  background: "linear-gradient(to right, #00bcd4, #006f8e)",
+  color: "white",
+  fontWeight: 600,
 };
 
 export default RegisterPage;
