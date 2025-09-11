@@ -26,11 +26,11 @@ const LoginPage = () => {
       const data = res.data;
       if (data.role === "admin") {
         alert("Admin Login Successful!");
-        navigate("/admin");
+        navigate("/admin/dashbord");
       } else {
         localStorage.setItem("userId", data.userId);
         alert("Login Successful!");
-        navigate("/dashboard");
+        navigate("/dashbord");
       }
     } catch (err) {
       alert("Login failed: " + (err.response?.data?.error || "Login Fail"));

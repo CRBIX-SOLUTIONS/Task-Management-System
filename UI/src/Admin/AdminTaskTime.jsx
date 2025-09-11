@@ -2,7 +2,7 @@ import React from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { useNavigate } from "react-router-dom";
 
-const AdminDashboard = () => {
+const AdminTaskTime = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
@@ -241,4 +241,4 @@ const dropdownStyle = {
   minWidth: "150px",
 };
 
-export default AdminDashboard;
+export default AdminTaskTime;

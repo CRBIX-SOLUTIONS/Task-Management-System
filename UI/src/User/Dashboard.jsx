@@ -5,12 +5,61 @@ import { Navigate, useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const [selectedTask, setSelectedTask] = useState(null);
+
+  const tasks = [
+    {
+      id: 1,
+      title: "Task 1",
+      priority: "High",
+      assignee: "Omkar",
+      assignedBy: "Manager",
+      date: "09/09/2025",
+    },
+    {
+      id: 2,
+      title: "Task 2",
+      priority: "Low",
+      assignee: "Omkar",
+      assignedBy: "Manager",
+      date: "10/09/2025",
+    },
+    {
+      id: 3,
+      title: "Task 3",
+      priority: "Critical",
+      assignee: "Omkar",
+      assignedBy: "Manager",
+      date: "11/09/2025",
+    },
+  ];
+
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
       localStorage.removeItem("userId");
       navigate("/");
     }
+  };
+
+  const getPriorityColor = (priority) => {
+    switch (priority.toLowerCase()) {
+      case "critical":
+        return "#ff4d4f"; 
+      case "high":
+        return "#ffa500"; 
+      case "medium":
+        return "#ffc107";
+      case "low":
+        return "#4caf50";
+      default:
+        return "#00bcd4"; 
+    }
+  };
+
+  const handleTaskClick = (task) => {
+    setSelectedTask(task);
+    setIsOpen(true);
   };
   return (
     <div
@@ -151,20 +200,22 @@ const Dashboard = () => {
 
           {/* Task & Escalations */}
           <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "20px",
-              flex: 1,
-            }}
+            style={{ display: "flex", flexWrap: "wrap", gap: "20px", flex: 1 }}
           >
-            <button
-              onClick={() => setIsOpen(true)}
-              style={{ ...cardBoxStyle, flex: "3 2 210px" }}
-            >
-              <p>Task 1</p>
-            </button>
-            {isOpen && (
+            {tasks.map((task) => (
+              <button
+                key={task.id}
+                style={{
+                  ...cardBoxStyle,
+                  backgroundColor: getPriorityColor(task.priority),
+                }}
+                onClick={() => handleTaskClick(task)}
+              >
+                <p>{task.title}</p>
+              </button>
+            ))}
+            // popup windwo
+            {isOpen && selectedTask && (
               <div
                 style={{
                   position: "fixed",
@@ -188,20 +239,20 @@ const Dashboard = () => {
                   }}
                 >
                   <h2>Task Detail's</h2>
-                  <p style={{ marginLeft: "5px" }}>
-                    <strong>Task Name:</strong> Sample Task
+                  <p>
+                    <strong>Task Name:</strong> {selectedTask.title}
                   </p>
-                  <p style={{ marginLeft: "-79px" }}>
-                    <strong>Priority:</strong> High
+                  <p>
+                    <strong>Priority:</strong> {selectedTask.priority}
                   </p>
-                  <p style={{ marginLeft: "-4px" }}>
-                    <strong>Assignee Name:</strong> Omkar
+                  <p>
+                    <strong>Assignee Name:</strong> {selectedTask.assignee}
                   </p>
-                  <p style={{ marginLeft: "-9px" }}>
-                    <strong>Assigned By:</strong> Manager
+                  <p>
+                    <strong>Assigned By:</strong> {selectedTask.assignedBy}
                   </p>
-                  <p style={{ marginLeft: "-55px" }}>
-                    <strong>Date:</strong> 09/09/2025
+                  <p>
+                    <strong>Date:</strong> {selectedTask.date}
                   </p>
 
                   <button
@@ -221,21 +272,6 @@ const Dashboard = () => {
                 </div>
               </div>
             )}
-            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
-              <p> Task 2</p>
-            </button>
-            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
-              <p> Task 3</p>
-            </button>
-            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
-              <p>Task 4</p>
-            </button>
-            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
-              <p> Task 5</p>
-            </button>
-            <button style={{ ...cardBoxStyle, flex: "3 2 210px" }}>
-              <p>Task 6</p>
-            </button>
           </div>
         </div>
       </div>
@@ -254,11 +290,17 @@ const dropdownStyle = {
 };
 
 const cardBoxStyle = {
-  background: "linear-gradient(to right, #006f8e, #00bcd4)",
+  // background: "linear-gradient(to right, #006f8e, #00bcd4)",
   borderRadius: "12px",
   color: "white",
   padding: "15px",
   minHeight: "200px",
+  cursor: "pointer",
+  flex: "3 2 210px",
+  textAlign: "center",
+  fontWeight: "600",
+  fontSize: "16px",
+  transition: "0.3s ease",
 };
 
 export default Dashboard;
